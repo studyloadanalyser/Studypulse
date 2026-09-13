@@ -1,0 +1,5677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>StudyPulse</title>
+
+<style>
+
+/* ================================
+   STUDYPULSE - MAIN DESIGN
+================================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:#0f172a;
+    color:#172033;
+}
+
+/* ================================
+   AUTH PAGE
+================================ */
+
+#authPage{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        #7c3aed 0%,
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        #06b6d4 0%,
+        transparent 35%
+    ),
+
+    #0f172a;
+}
+
+/* ================================
+   LOGIN BOX
+================================ */
+
+.authBox{
+
+    width:100%;
+    max-width:420px;
+
+    background:white;
+
+    padding:32px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 25px 70px rgba(0,0,0,0.4);
+
+    animation:boxEnter 0.7s ease;
+}
+
+@keyframes boxEnter{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ================================
+   LOGO
+================================ */
+
+.logoArea{
+    text-align:center;
+    margin-bottom:28px;
+}
+
+.logoIcon{
+
+    width:70px;
+    height:70px;
+
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #06b6d4
+    );
+
+    color:white;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    box-shadow:
+    0 10px 30px rgba(124,58,237,0.35);
+}
+
+.logoArea h1{
+
+    margin-top:14px;
+
+    font-size:30px;
+
+    color:#111827;
+}
+
+.logoArea p{
+
+    margin-top:6px;
+
+    color:#64748b;
+
+    font-size:14px;
+}
+
+/* ================================
+   FORM
+================================ */
+
+.formTitle{
+
+    font-size:23px;
+
+    margin-bottom:20px;
+
+    color:#111827;
+}
+
+.inputGroup{
+
+    margin-bottom:16px;
+}
+
+.inputGroup label{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    color:#374151;
+}
+
+.inputGroup input{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #dbe1ea;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:0.2s;
+}
+
+.inputGroup input:focus{
+
+    border-color:#7c3aed;
+
+    box-shadow:
+    0 0 0 3px
+    rgba(124,58,237,0.10);
+}
+
+/* ================================
+   MAIN BUTTON
+================================ */
+
+.mainButton{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #06b6d4
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.25s;
+}
+
+.mainButton:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 25px
+    rgba(124,58,237,0.3);
+}
+
+/* ================================
+   SWITCH LOGIN / SIGNUP
+================================ */
+
+.switchText{
+
+    text-align:center;
+
+    margin-top:20px;
+
+    color:#64748b;
+
+    font-size:14px;
+}
+
+.switchText span{
+
+    color:#7c3aed;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.switchText span:hover{
+
+    text-decoration:underline;
+}
+
+/* ================================
+   SIGNUP
+================================ */
+
+#signupForm{
+
+    display:none;
+}
+
+/* ================================
+   MESSAGE
+================================ */
+
+.messageBox{
+
+    display:none;
+
+    margin-top:15px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+    text-align:center;
+}
+
+/* ================================
+   DASHBOARD
+================================ */
+
+#appPage{
+
+    display:none;
+
+    min-height:100vh;
+
+    background:#f4f7fb;
+}
+
+/* ================================
+   SIDEBAR
+================================ */
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:245px;
+
+    background:#111827;
+
+    color:white;
+
+    padding:25px 15px;
+
+    z-index:100;
+}
+
+.sidebarLogo{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    padding:
+    0 12px 25px;
+}
+
+.sidebarLogo span{
+
+    color:#06b6d4;
+}
+
+.navItem{
+
+    padding:13px 15px;
+
+    margin:6px 0;
+
+    border-radius:12px;
+
+    color:#cbd5e1;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+.navItem:hover{
+
+    background:#1e293b;
+
+    color:white;
+}
+
+.navItem.active{
+
+    background:
+    linear-gradient(
+        90deg,
+        #7c3aed,
+        #06b6d4
+    );
+
+    color:white;
+}
+
+.logoutButton{
+
+    position:absolute;
+
+    left:15px;
+    right:15px;
+    bottom:25px;
+
+    background:
+    rgba(239,68,68,0.15);
+
+    color:#fca5a5;
+}
+
+/* ================================
+   MAIN AREA
+================================ */
+
+.mainContent{
+
+    margin-left:245px;
+
+    padding:25px;
+}
+
+/* ================================
+   TOP BAR
+================================ */
+
+.topBar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.welcomeTitle{
+
+    font-size:28px;
+
+    color:#111827;
+}
+
+.welcomeSub{
+
+    margin-top:5px;
+
+    color:#64748b;
+}
+
+.userCircle{
+
+    width:46px;
+    height:46px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #06b6d4
+    );
+
+    color:white;
+
+    font-weight:bold;
+}
+
+/* ================================
+   MOBILE MENU
+================================ */
+
+.mobileMenu{
+
+    display:none;
+
+    border:none;
+
+    background:#111827;
+
+    color:white;
+
+    padding:10px 14px;
+
+    border-radius:10px;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media(max-width:900px){
+
+    .sidebar{
+
+        transform:translateX(-100%);
+
+        transition:0.3s;
+    }
+
+    .sidebar.open{
+
+        transform:translateX(0);
+    }
+
+    .mainContent{
+
+        margin-left:0;
+
+        padding:18px;
+    }
+
+    .mobileMenu{
+
+        display:block;
+    }
+
+    .welcomeTitle{
+
+        font-size:22px;
+    }
+}
+
+@media(max-width:500px){
+
+    .authBox{
+
+        padding:25px;
+    }
+
+    .logoArea h1{
+
+        font-size:26px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =================================
+     AUTHENTICATION PAGE
+================================= -->
+
+<div id="authPage">
+
+    <div class="authBox">
+
+
+        <!-- LOGO -->
+
+        <div class="logoArea">
+
+            <div class="logoIcon">
+                SP
+            </div>
+
+            <h1>
+                StudyPulse
+            </h1>
+
+            <p>
+                Your Personal Study Intelligence
+            </p>
+
+        </div>
+
+
+        <!-- =================================
+             LOGIN FORM
+        ================================= -->
+
+        <div id="loginForm">
+
+            <div class="formTitle">
+                Welcome Back 👋
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter your email"
+                >
+
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                >
+
+            </div>
+
+
+            <button
+                class="mainButton"
+                onclick="loginUser()"
+            >
+
+                Login
+
+            </button>
+
+
+            <div class="switchText">
+
+                Don't have an account?
+
+                <span
+                    onclick="showSignup()"
+                >
+                    Create Account
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             SIGNUP FORM
+        ================================= -->
+
+        <div id="signupForm">
+
+            <div class="formTitle">
+                Create Account 🚀
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="signupName"
+                    placeholder="Enter your name"
+                >
+
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Enter your email"
+                >
+
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Minimum 6 characters"
+                >
+
+            </div>
+
+
+            <button
+                class="mainButton"
+                onclick="createAccount()"
+            >
+
+                Create Account
+
+            </button>
+
+
+            <div class="switchText">
+
+                Already have an account?
+
+                <span
+                    onclick="showLogin()"
+                >
+                    Login
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="messageBox"
+            class="messageBox"
+        ></div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =================================
+     DASHBOARD APP
+================================= -->
+
+<div id="appPage">
+
+
+    <!-- SIDEBAR -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+        <div class="sidebarLogo">
+
+            Study<span>Pulse</span>
+
+        </div>
+
+
+        <div
+            class="navItem active"
+            onclick="openSection('dashboard',this)"
+        >
+
+            🏠 Dashboard
+
+        </div>
+
+
+        <div
+            class="navItem"
+            onclick="openSection('tasks',this)"
+        >
+
+            ✅ Tasks
+
+        </div>
+
+
+        <div
+            class="navItem"
+            onclick="openSection('tests',this)"
+        >
+
+            📝 Tests
+
+        </div>
+
+
+        <div
+            class="navItem"
+            onclick="openSection('study',this)"
+        >
+
+            ⏱️ Study Time
+
+        </div>
+
+
+        <div
+            class="navItem"
+            onclick="openSection('goals',this)"
+        >
+
+            🎯 Goals
+
+        </div>
+
+
+        <div
+            class="navItem"
+            onclick="openSection('achievements',this)"
+        >
+
+            🏆 Achievements
+
+        </div>
+
+
+        <div
+            class="navItem"
+            onclick="openSection('analysis',this)"
+        >
+
+            📊 Student Analysis
+
+        </div>
+
+
+        <div
+            class="navItem logoutButton"
+            onclick="logoutUser()"
+        >
+
+            🚪 Logout
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="mainContent">
+
+
+        <div class="topBar">
+
+
+            <button
+                class="mobileMenu"
+                onclick="toggleSidebar()"
+            >
+                ☰
+            </button>
+
+
+            <div>
+
+                <h1
+                    class="welcomeTitle"
+                    id="welcomeTitle"
+                >
+
+                    Welcome to StudyPulse
+
+                </h1>
+
+
+                <p class="welcomeSub">
+
+                    Track your learning and improve
+                    your performance.
+
+                </p>
+
+            </div>
+
+
+            <div
+                class="userCircle"
+                id="userCircle"
+            >
+
+                S
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================
+     DASHBOARD SECTION
+================================= -->
+
+<section
+    id="dashboard"
+    class="pageSection active"
+>
+
+
+    <!-- STAT CARDS -->
+
+    <div class="statsGrid">
+
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                📚
+            </div>
+
+            <h2 id="totalTasks">
+                0
+            </h2>
+
+            <p>
+                Total Tasks
+            </p>
+
+        </div>
+
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                ⏱️
+            </div>
+
+            <h2 id="studyHours">
+                0h
+            </h2>
+
+            <p>
+                Study Time
+            </p>
+
+        </div>
+
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                📝
+            </div>
+
+            <h2 id="averageScore">
+                0%
+            </h2>
+
+            <p>
+                Average Score
+            </p>
+
+        </div>
+
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                🎯
+            </div>
+
+            <h2 id="completedTasks">
+                0
+            </h2>
+
+            <p>
+                Completed Tasks
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROGRESS AREA -->
+
+    <div class="dashboardGrid">
+
+
+        <div class="contentCard">
+
+            <div class="cardHeader">
+
+                <h2>
+                    Today's Progress
+                </h2>
+
+                <span>
+                    📈
+                </span>
+
+            </div>
+
+
+            <p class="cardDescription">
+
+                Your overall study progress
+
+            </p>
+
+
+            <div class="progressBox">
+
+                <div
+                    class="progressBar"
+                    id="overallProgress"
+                ></div>
+
+            </div>
+
+
+            <p
+                id="progressText"
+                class="progressText"
+            >
+
+                0% completed
+
+            </p>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="contentCard">
+
+            <div class="cardHeader">
+
+                <h2>
+                    Quick Actions
+                </h2>
+
+                <span>
+                    ⚡
+                </span>
+
+            </div>
+
+
+            <button
+                class="actionButton"
+                onclick="openSectionById('tasks')"
+            >
+
+                ➕ Add Task
+
+            </button>
+
+
+            <button
+                class="actionButton"
+                onclick="openSectionById('tests')"
+            >
+
+                📝 Add Test
+
+            </button>
+
+
+            <button
+                class="actionButton"
+                onclick="openSectionById('study')"
+            >
+
+                ⏱️ Start Study
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- WELCOME CARD -->
+
+    <div class="contentCard welcomeCard">
+
+        <div>
+
+            <h2>
+                Your Study Journey 🚀
+            </h2>
+
+            <p>
+
+                Complete your tasks, track your
+                study time and improve your
+                academic performance.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     TASKS SECTION
+================================= -->
+
+<section
+    id="tasks"
+    class="pageSection"
+>
+
+
+    <div class="contentCard">
+
+        <div class="cardHeader">
+
+            <h2>
+                My Tasks ✅
+            </h2>
+
+            <span>
+                📋
+            </span>
+
+        </div>
+
+
+        <!-- ADD TASK -->
+
+        <div class="taskInputArea">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter your study task..."
+            >
+
+
+            <button
+                class="addButton"
+                onclick="addTask()"
+            >
+
+                Add Task
+
+            </button>
+
+        </div>
+
+
+        <!-- TASK LIST -->
+
+        <div
+            id="taskList"
+            class="taskList"
+        >
+
+            <div class="emptyState">
+
+                <div>
+                    📝
+                </div>
+
+                <p>
+                    No tasks yet
+                </p>
+
+                <small>
+                    Add your first study task above.
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     TEST SECTION
+================================= -->
+
+<section
+    id="tests"
+    class="pageSection"
+>
+
+
+    <div class="contentCard">
+
+        <div class="cardHeader">
+
+            <h2>
+                Test Performance 📝
+            </h2>
+
+            <span>
+                📊
+            </span>
+
+        </div>
+
+
+        <div class="testForm">
+
+
+            <div class="inputGroup">
+
+                <label>
+                    Test Name
+                </label>
+
+                <input
+                    type="text"
+                    id="testName"
+                    placeholder="Example: Financial Management"
+                >
+
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>
+                    Score
+                </label>
+
+                <input
+                    type="number"
+                    id="testScore"
+                    placeholder="Enter score"
+                    min="0"
+                    max="100"
+                >
+
+            </div>
+
+
+            <button
+                class="addButton"
+                onclick="addTest()"
+            >
+
+                Save Test Result
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="testList"
+            class="testList"
+        >
+
+            <div class="emptyState">
+
+                <div>
+                    📝
+                </div>
+
+                <p>
+                    No tests recorded
+                </p>
+
+                <small>
+                    Add your first test result.
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     STUDY TIME SECTION
+================================= -->
+
+<section
+    id="study"
+    class="pageSection"
+>
+
+
+    <div class="contentCard timerCard">
+
+
+        <div class="cardHeader">
+
+            <h2>
+                Study Time ⏱️
+            </h2>
+
+            <span>
+                🔥
+            </span>
+
+        </div>
+
+
+        <p class="cardDescription">
+
+            Start the timer when you begin studying.
+
+        </p>
+
+
+        <div
+            id="timerDisplay"
+            class="timerDisplay"
+        >
+
+            00:00:00
+
+        </div>
+
+
+        <div class="timerButtons">
+
+            <button
+                class="timerButton start"
+                onclick="startTimer()"
+            >
+
+                ▶ Start
+
+            </button>
+
+
+            <button
+                class="timerButton pause"
+                onclick="pauseTimer()"
+            >
+
+                ⏸ Pause
+
+            </button>
+
+
+            <button
+                class="timerButton stop"
+                onclick="stopTimer()"
+            >
+
+                ⏹ Stop
+
+            </button>
+
+        </div>
+
+
+        <div class="studyInfo">
+
+            <div>
+
+                <strong id="todayStudy">
+                    0 min
+                </strong>
+
+                <span>
+                    Today's Study
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong id="totalStudy">
+                    0 hr
+                </strong>
+
+                <span>
+                    Total Study
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     GOALS SECTION
+================================= -->
+
+<section
+    id="goals"
+    class="pageSection"
+>
+
+
+    <div class="contentCard">
+
+        <div class="cardHeader">
+
+            <h2>
+                My Goals 🎯
+            </h2>
+
+            <span>
+                🚀
+            </span>
+
+        </div>
+
+
+        <div class="goalCard">
+
+            <div class="goalTop">
+
+                <strong>
+                    MBA Finance Preparation
+                </strong>
+
+                <span>
+                    75%
+                </span>
+
+            </div>
+
+
+            <div class="progressBox">
+
+                <div
+                    class="progressBar"
+                    style="width:75%"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="goalCard">
+
+            <div class="goalTop">
+
+                <strong>
+                    Advanced Excel
+                </strong>
+
+                <span>
+                    60%
+                </span>
+
+            </div>
+
+
+            <div class="progressBox">
+
+                <div
+                    class="progressBar"
+                    style="width:60%"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="goalCard">
+
+            <div class="goalTop">
+
+                <strong>
+                    Financial Modelling
+                </strong>
+
+                <span>
+                    45%
+                </span>
+
+            </div>
+
+
+            <div class="progressBox">
+
+                <div
+                    class="progressBar"
+                    style="width:45%"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="goalCard">
+
+            <div class="goalTop">
+
+                <strong>
+                    Finance Job Preparation
+                </strong>
+
+                <span>
+                    35%
+                </span>
+
+            </div>
+
+
+            <div class="progressBox">
+
+                <div
+                    class="progressBar"
+                    style="width:35%"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     ACHIEVEMENTS SECTION
+================================= -->
+
+<section
+    id="achievements"
+    class="pageSection"
+>
+
+
+    <div class="contentCard">
+
+        <div class="cardHeader">
+
+            <h2>
+                Achievements 🏆
+            </h2>
+
+            <span>
+                ⭐
+            </span>
+
+        </div>
+
+
+        <div class="achievementGrid">
+
+
+            <div class="achievementCard">
+
+                <div class="achievementIcon">
+                    🌱
+                </div>
+
+                <h3>
+                    First Step
+                </h3>
+
+                <p>
+                    Create your StudyPulse account.
+                </p>
+
+            </div>
+
+
+            <div class="achievementCard">
+
+                <div class="achievementIcon">
+                    📝
+                </div>
+
+                <h3>
+                    Task Starter
+                </h3>
+
+                <p>
+                    Complete your first task.
+                </p>
+
+            </div>
+
+
+            <div class="achievementCard">
+
+                <div class="achievementIcon">
+                    ⏱️
+                </div>
+
+                <h3>
+                    Focus Master
+                </h3>
+
+                <p>
+                    Study for 5 hours.
+                </p>
+
+            </div>
+
+
+            <div class="achievementCard">
+
+                <div class="achievementIcon">
+                    📚
+                </div>
+
+                <h3>
+                    Test Taker
+                </h3>
+
+                <p>
+                    Complete your first test.
+                </p>
+
+            </div>
+
+
+            <div class="achievementCard">
+
+                <div class="achievementIcon">
+                    🔥
+                </div>
+
+                <h3>
+                    Consistent Learner
+                </h3>
+
+                <p>
+                    Study for 7 days.
+                </p>
+
+            </div>
+
+
+            <div class="achievementCard">
+
+                <div class="achievementIcon">
+                    🏆
+                </div>
+
+                <h3>
+                    Study Champion
+                </h3>
+
+                <p>
+                    Reach 90% progress.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     STUDENT ANALYSIS SECTION
+================================= -->
+
+<section
+    id="analysis"
+    class="pageSection"
+>
+
+
+    <div class="statsGrid">
+
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                📈
+            </div>
+
+            <h2 id="analysisScore">
+                0%
+            </h2>
+
+            <p>
+                Academic Score
+            </p>
+
+        </div>
+
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                ⏰
+            </div>
+
+            <h2 id="analysisStudy">
+                0h
+            </h2>
+
+            <p>
+                Study Time
+            </p>
+
+        </div>
+
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                ✅
+            </div>
+
+            <h2 id="analysisTasks">
+                0%
+            </h2>
+
+            <p>
+                Task Completion
+            </p>
+
+        </div>
+
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                🎯
+            </div>
+
+            <h2>
+                Active
+            </h2>
+
+            <p>
+                Goal Status
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="contentCard">
+
+        <div class="cardHeader">
+
+            <h2>
+                Student Performance Analysis
+            </h2>
+
+            <span>
+                🧠
+            </span>
+
+        </div>
+
+
+        <p class="cardDescription">
+
+            StudyPulse will analyse your study
+            time, tasks and test performance.
+
+        </p>
+
+
+        <div class="analysisBox">
+
+            <div class="analysisItem">
+
+                <span>
+                    Task Completion
+                </span>
+
+                <strong id="taskAnalysis">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="progressBox">
+
+                <div
+                    class="progressBar"
+                    id="taskAnalysisBar"
+                ></div>
+
+            </div>
+
+
+            <div class="analysisItem">
+
+                <span>
+                    Test Performance
+                </span>
+
+                <strong id="testAnalysis">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="progressBox">
+
+                <div
+                    class="progressBar"
+                    id="testAnalysisBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="analysisMessage"
+            class="analysisMessage"
+        >
+
+            Start adding tasks and tests
+            to generate your analysis.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* ================================
+   STUDYPULSE DASHBOARD CSS
+================================ */
+
+.pageSection{
+    display:none;
+    animation:fadeIn 0.35s ease;
+}
+
+.pageSection.active{
+    display:block;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* STATISTICS */
+
+.statsGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.statCard{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.06);
+    transition:0.3s;
+}
+
+.statCard:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(0,0,0,0.10);
+}
+
+.statIcon{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.statCard h3{
+    font-size:14px;
+    color:#777;
+    margin:0 0 8px;
+}
+
+.statCard p{
+    font-size:28px;
+    font-weight:700;
+    color:#222;
+    margin:0;
+}
+
+/* DASHBOARD GRID */
+
+.dashboardGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.contentCard{
+    background:white;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.06);
+    margin-bottom:20px;
+}
+
+.cardHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+}
+
+.cardHeader h2{
+    margin:0;
+    font-size:20px;
+}
+
+.cardDescription{
+    color:#777;
+    font-size:14px;
+    margin-bottom:18px;
+}
+
+/* PROGRESS */
+
+.progressBox{
+    margin-top:15px;
+}
+
+.progressBar{
+    width:100%;
+    height:12px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progressBar div{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#667eea,#764ba2);
+    border-radius:20px;
+    transition:0.5s;
+}
+
+.progressText{
+    margin-top:8px;
+    font-size:13px;
+    color:#666;
+}
+
+/* ACTION BUTTONS */
+
+.actionButton{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:10px;
+    transition:0.3s;
+}
+
+.actionButton:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(102,126,234,0.3);
+}
+
+/* WELCOME */
+
+.welcomeCard{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    border-radius:22px;
+    padding:25px;
+    margin-bottom:22px;
+    box-shadow:0 12px 30px rgba(102,126,234,0.25);
+}
+
+.welcomeCard h1{
+    margin:0 0 8px;
+    font-size:28px;
+}
+
+.welcomeCard p{
+    margin:0;
+    opacity:0.9;
+}
+
+/* TASKS */
+
+.taskInputArea{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.taskInputArea input{
+    flex:1;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+}
+
+.taskInputArea input:focus{
+    border-color:#667eea;
+}
+
+.addButton{
+    padding:0 20px;
+    border:none;
+    border-radius:12px;
+    background:#667eea;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.taskList{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.taskItem{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px;
+    background:#f8f9ff;
+    border-radius:12px;
+}
+
+.taskItemLeft{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.taskItemLeft input{
+    width:18px;
+    height:18px;
+}
+
+.taskItem.completed span{
+    text-decoration:line-through;
+    color:#999;
+}
+
+.deleteButton{
+    border:none;
+    background:#ffe8e8;
+    color:#e74c3c;
+    padding:7px 10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.emptyState{
+    text-align:center;
+    padding:30px;
+    color:#999;
+}
+
+/* TESTS */
+
+.testForm{
+    display:grid;
+    grid-template-columns:1fr 150px 120px;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.testForm input{
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+}
+
+.testList{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.testItem{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    background:#f8f9ff;
+    border-radius:12px;
+}
+
+.testScore{
+    font-weight:700;
+    color:#667eea;
+}
+
+/* TIMER */
+
+.timerCard{
+    text-align:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    border-radius:22px;
+    padding:35px 20px;
+    margin-bottom:20px;
+}
+
+.timerDisplay{
+    font-size:58px;
+    font-weight:700;
+    letter-spacing:3px;
+    margin:20px 0;
+}
+
+.timerButtons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.timerButton{
+    padding:11px 22px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    background:white;
+    color:#555;
+}
+
+.studyInfo{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.studyInfo div{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    text-align:center;
+    box-shadow:0 6px 20px rgba(0,0,0,0.05);
+}
+
+.studyInfo h3{
+    margin:0 0 8px;
+    color:#777;
+    font-size:14px;
+}
+
+.studyInfo p{
+    margin:0;
+    font-size:24px;
+    font-weight:700;
+}
+
+/* GOALS */
+
+.goalCard{
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:15px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.05);
+}
+
+.goalTop{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.goalTop h3{
+    margin:0;
+    font-size:16px;
+}
+
+.goalTop span{
+    font-weight:700;
+    color:#667eea;
+}
+
+/* ACHIEVEMENTS */
+
+.achievementGrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.achievementCard{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    text-align:center;
+    box-shadow:0 7px 22px rgba(0,0,0,0.06);
+    transition:0.3s;
+}
+
+.achievementCard:hover{
+    transform:translateY(-5px);
+}
+
+.achievementIcon{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.achievementCard h3{
+    margin:5px 0;
+}
+
+.achievementCard p{
+    color:#777;
+    font-size:13px;
+}
+
+/* ANALYSIS */
+
+.analysisBox{
+    background:white;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.06);
+    margin-bottom:20px;
+}
+
+.analysisItem{
+    margin-bottom:20px;
+}
+
+.analysisItem:last-child{
+    margin-bottom:0;
+}
+
+.analysisItem h3{
+    margin:0 0 8px;
+    font-size:15px;
+}
+
+.analysisMessage{
+    padding:18px;
+    border-radius:14px;
+    background:#f5f6ff;
+    color:#555;
+    line-height:1.6;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .statsGrid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dashboardGrid{
+        grid-template-columns:1fr;
+    }
+
+    .achievementGrid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .testForm{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .statsGrid{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .statCard{
+        padding:15px;
+    }
+
+    .statCard p{
+        font-size:22px;
+    }
+
+    .contentCard{
+        padding:16px;
+    }
+
+    .welcomeCard{
+        padding:20px;
+    }
+
+    .welcomeCard h1{
+        font-size:23px;
+    }
+
+    .taskInputArea{
+        flex-direction:column;
+    }
+
+    .addButton{
+        padding:13px;
+    }
+
+    .studyInfo{
+        grid-template-columns:1fr;
+    }
+
+    .achievementGrid{
+        grid-template-columns:1fr;
+    }
+
+    .timerDisplay{
+        font-size:45px;
+    }
+
+}
+
+</style>
+
+<!-- =================================
+     PART 4 : FIREBASE AUTH
+================================= -->
+
+<script type="module">
+
+/* Firebase imports */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut,
+    updateProfile
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+/* Firebase Configuration */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyC0dtYtYBtdCDi2z9dW9OUfIf9txIhLxZ4",
+    authDomain: "studypulse-5299a.firebaseapp.com",
+    projectId: "studypulse-5299a",
+    storageBucket: "studypulse-5299a.firebasestorage.app",
+    messagingSenderId: "478297973563",
+    appId: "1:478297973563:web:6c7b8045be8d4488a7cd1e",
+    measurementId: "G-L9G988PEXG"
+};
+
+
+/* Start Firebase */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+/* ================================
+   SHOW SIGN UP
+================================ */
+
+window.showSignup = function(){
+
+    document.getElementById("loginForm").style.display = "none";
+
+    document.getElementById("signupForm").style.display = "block";
+
+    clearMessage();
+
+};
+
+
+/* ================================
+   SHOW LOGIN
+================================ */
+
+window.showLogin = function(){
+
+    document.getElementById("signupForm").style.display = "none";
+
+    document.getElementById("loginForm").style.display = "block";
+
+    clearMessage();
+
+};
+
+
+/* ================================
+   MESSAGE FUNCTION
+================================ */
+
+function showMessage(message, type = "error"){
+
+    const box = document.getElementById("messageBox");
+
+    if(!box) return;
+
+    box.textContent = message;
+
+    box.style.display = "block";
+
+    if(type === "success"){
+        box.style.color = "#16803c";
+        box.style.background = "#e9f9ef";
+    }
+    else{
+        box.style.color = "#c62828";
+        box.style.background = "#ffecec";
+    }
+
+}
+
+
+/* ================================
+   CLEAR MESSAGE
+================================ */
+
+function clearMessage(){
+
+    const box = document.getElementById("messageBox");
+
+    if(!box) return;
+
+    box.textContent = "";
+
+    box.style.display = "none";
+
+}
+
+
+/* ================================
+   CREATE ACCOUNT
+================================ */
+
+window.createAccount = async function(){
+
+    const name =
+        document.getElementById("signupName").value.trim();
+
+    const email =
+        document.getElementById("signupEmail").value.trim();
+
+    const password =
+        document.getElementById("signupPassword").value;
+
+
+    if(name === ""){
+        showMessage("Please enter your name.");
+        return;
+    }
+
+    if(email === ""){
+        showMessage("Please enter your email.");
+        return;
+    }
+
+    if(password === ""){
+        showMessage("Please enter a password.");
+        return;
+    }
+
+    if(password.length < 6){
+        showMessage("Password must contain at least 6 characters.");
+        return;
+    }
+
+
+    try{
+
+        showMessage("Creating your account...", "success");
+
+
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        const user = userCredential.user;
+
+
+        /* Save user's name in Firebase Authentication */
+
+        await updateProfile(user, {
+            displayName: name
+        });
+
+
+        showMessage(
+            "Account created successfully!",
+            "success"
+        );
+
+
+        setTimeout(() => {
+
+            openDashboard(user);
+
+        }, 700);
+
+
+    }
+    catch(error){
+
+        console.log(error);
+
+        let message =
+            "Something went wrong. Please try again.";
+
+
+        if(error.code === "auth/email-already-in-use"){
+            message = "This email is already registered.";
+        }
+
+        else if(error.code === "auth/invalid-email"){
+            message = "Please enter a valid email address.";
+        }
+
+        else if(error.code === "auth/weak-password"){
+            message = "Password is too weak.";
+        }
+
+        else if(error.code === "auth/network-request-failed"){
+            message = "Please check your internet connection.";
+        }
+
+
+        showMessage(message);
+
+    }
+
+};
+
+
+/* ================================
+   LOGIN
+================================ */
+
+window.loginUser = async function(){
+
+    const email =
+        document.getElementById("loginEmail").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+
+    if(email === ""){
+        showMessage("Please enter your email.");
+        return;
+    }
+
+    if(password === ""){
+        showMessage("Please enter your password.");
+        return;
+    }
+
+
+    try{
+
+        showMessage("Logging in...", "success");
+
+
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        const user = userCredential.user;
+
+
+        showMessage(
+            "Login successful!",
+            "success"
+        );
+
+
+        setTimeout(() => {
+
+            openDashboard(user);
+
+        }, 500);
+
+
+    }
+    catch(error){
+
+        console.log(error);
+
+        let message =
+            "Login failed. Please check your details.";
+
+
+        if(error.code === "auth/invalid-credential"){
+            message =
+                "Incorrect email or password.";
+        }
+
+        else if(error.code === "auth/user-not-found"){
+            message =
+                "No account found with this email.";
+        }
+
+        else if(error.code === "auth/wrong-password"){
+            message =
+                "Incorrect password.";
+        }
+
+        else if(error.code === "auth/invalid-email"){
+            message =
+                "Please enter a valid email.";
+        }
+
+        else if(error.code === "auth/network-request-failed"){
+            message =
+                "Please check your internet connection.";
+        }
+
+
+        showMessage(message);
+
+    }
+
+};
+
+
+/* ================================
+   OPEN DASHBOARD
+================================ */
+
+function openDashboard(user){
+
+    const authPage =
+        document.getElementById("authPage");
+
+    const appPage =
+        document.getElementById("appPage");
+
+
+    if(authPage){
+        authPage.style.display = "none";
+    }
+
+    if(appPage){
+        appPage.style.display = "flex";
+    }
+
+
+    /* User name */
+
+    const name =
+        user.displayName ||
+        user.email.split("@")[0];
+
+
+    const welcomeTitle =
+        document.getElementById("welcomeTitle");
+
+    if(welcomeTitle){
+
+        welcomeTitle.textContent =
+            "Welcome, " + name + " 👋";
+
+    }
+
+
+    /* User circle */
+
+    const userCircle =
+        document.getElementById("userCircle");
+
+    if(userCircle){
+
+        userCircle.textContent =
+            name.charAt(0).toUpperCase();
+
+    }
+
+}
+
+
+/* ================================
+   LOGOUT
+================================ */
+
+window.logoutUser = async function(){
+
+    try{
+
+        await signOut(auth);
+
+        location.reload();
+
+    }
+    catch(error){
+
+        console.log(error);
+
+        alert("Unable to logout. Please try again.");
+
+    }
+
+};
+
+
+/* ================================
+   CHECK LOGIN STATE
+================================ */
+
+onAuthStateChanged(auth, (user) => {
+
+    if(user){
+
+        openDashboard(user);
+
+    }
+    else{
+
+        const authPage =
+            document.getElementById("authPage");
+
+        const appPage =
+            document.getElementById("appPage");
+
+
+        if(authPage){
+            authPage.style.display = "flex";
+        }
+
+        if(appPage){
+            appPage.style.display = "none";
+        }
+
+    }
+
+});
+
+
+</script>
+
+
+<!-- =================================
+     PART 5 : FIRESTORE TASKS
+================================= -->
+
+<script type="module">
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    deleteDoc,
+    updateDoc,
+    doc,
+    onSnapshot,
+    query,
+    orderBy,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* Firebase Database */
+
+const db = getFirestore();
+
+
+/* Current logged-in user */
+
+let currentUser = null;
+
+
+/* Task listener */
+
+let taskUnsubscribe = null;
+
+
+/* =================================
+   GET CURRENT USER
+================================= */
+
+import {
+    getAuth
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const taskAuth = getAuth();
+
+
+/* =================================
+   WATCH LOGIN
+================================= */
+
+taskAuth.onAuthStateChanged(user => {
+
+    currentUser = user;
+
+    if(user){
+
+        loadTasks(user.uid);
+
+    }
+
+});
+
+
+/* =================================
+   ADD TASK
+================================= */
+
+window.addTask = async function(){
+
+    const input =
+        document.getElementById("taskInput");
+
+    if(!input){
+
+        return;
+
+    }
+
+
+    const taskText =
+        input.value.trim();
+
+
+    if(taskText === ""){
+
+        alert("Please enter a task.");
+
+        return;
+
+    }
+
+
+    if(!currentUser){
+
+        alert("Please login first.");
+
+        return;
+
+    }
+
+
+    try{
+
+        await addDoc(
+
+            collection(
+                db,
+                "users",
+                currentUser.uid,
+                "tasks"
+            ),
+
+            {
+
+                text: taskText,
+
+                completed: false,
+
+                createdAt: serverTimestamp()
+
+            }
+
+        );
+
+
+        input.value = "";
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to save task. Please try again."
+        );
+
+    }
+
+};
+
+
+/* =================================
+   LOAD TASKS
+================================= */
+
+function loadTasks(uid){
+
+    const taskList =
+        document.getElementById("taskList");
+
+
+    if(!taskList){
+
+        return;
+
+    }
+
+
+    const tasksRef =
+        collection(
+            db,
+            "users",
+            uid,
+            "tasks"
+        );
+
+
+    const tasksQuery =
+        query(
+            tasksRef,
+            orderBy("createdAt", "desc")
+        );
+
+
+    if(taskUnsubscribe){
+
+        taskUnsubscribe();
+
+    }
+
+
+    taskUnsubscribe =
+        onSnapshot(
+
+            tasksQuery,
+
+            snapshot => {
+
+                taskList.innerHTML = "";
+
+
+                if(snapshot.empty){
+
+                    taskList.innerHTML = `
+
+                        <div class="emptyState">
+
+                            📝
+
+                            <br><br>
+
+                            No tasks yet.
+
+                            <br>
+
+                            Add your first study task!
+
+                        </div>
+
+                    `;
+
+                    updateTaskStats([]);
+
+                    return;
+
+                }
+
+
+                const tasks = [];
+
+
+                snapshot.forEach(taskDoc => {
+
+                    const task =
+                        taskDoc.data();
+
+
+                    tasks.push({
+
+                        id: taskDoc.id,
+
+                        ...task
+
+                    });
+
+
+                });
+
+
+                tasks.forEach(task => {
+
+                    createTaskElement(task);
+
+                });
+
+
+                updateTaskStats(tasks);
+
+            },
+
+
+            error => {
+
+                console.error(
+                    "Task loading error:",
+                    error
+                );
+
+            }
+
+        );
+
+}
+
+
+/* =================================
+   CREATE TASK ELEMENT
+================================= */
+
+function createTaskElement(task){
+
+    const taskList =
+        document.getElementById("taskList");
+
+
+    const item =
+        document.createElement("div");
+
+
+    item.className =
+        "taskItem";
+
+
+    if(task.completed){
+
+        item.classList.add("completed");
+
+    }
+
+
+    item.innerHTML = `
+
+        <div class="taskItemLeft">
+
+            <input
+                type="checkbox"
+                ${task.completed ? "checked" : ""}
+                onchange="toggleTask(
+                    '${task.id}',
+                    this.checked
+                )"
+            >
+
+            <span>
+                ${escapeHTML(task.text)}
+            </span>
+
+        </div>
+
+        <button
+            class="deleteButton"
+            onclick="deleteTask('${task.id}')"
+        >
+            🗑️
+        </button>
+
+    `;
+
+
+    taskList.appendChild(item);
+
+}
+
+
+/* =================================
+   COMPLETE / UNCOMPLETE TASK
+================================= */
+
+window.toggleTask = async function(
+    taskId,
+    completed
+){
+
+    if(!currentUser){
+
+        return;
+
+    }
+
+
+    try{
+
+        await updateDoc(
+
+            doc(
+                db,
+                "users",
+                currentUser.uid,
+                "tasks",
+                taskId
+            ),
+
+            {
+
+                completed: completed
+
+            }
+
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to update task."
+        );
+
+    }
+
+};
+
+
+/* =================================
+   DELETE TASK
+================================= */
+
+window.deleteTask = async function(taskId){
+
+    if(!currentUser){
+
+        return;
+
+    }
+
+
+    const confirmDelete =
+        confirm(
+            "Delete this task?"
+        );
+
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+
+    try{
+
+        await deleteDoc(
+
+            doc(
+                db,
+                "users",
+                currentUser.uid,
+                "tasks",
+                taskId
+            )
+
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to delete task."
+        );
+
+    }
+
+};
+
+
+/* =================================
+   TASK STATISTICS
+================================= */
+
+function updateTaskStats(tasks){
+
+    const total =
+        tasks.length;
+
+
+    const completed =
+        tasks.filter(
+            task => task.completed
+        ).length;
+
+
+    const totalElement =
+        document.getElementById(
+            "totalTasks"
+        );
+
+
+    const completedElement =
+        document.getElementById(
+            "completedTasks"
+        );
+
+
+    if(totalElement){
+
+        totalElement.textContent =
+            total;
+
+    }
+
+
+    if(completedElement){
+
+        completedElement.textContent =
+            completed;
+
+    }
+
+
+    updateOverallProgress(
+        total,
+        completed
+    );
+
+}
+
+
+/* =================================
+   OVERALL PROGRESS
+================================= */
+
+function updateOverallProgress(
+    total,
+    completed
+){
+
+    let percentage = 0;
+
+
+    if(total > 0){
+
+        percentage =
+            Math.round(
+                (completed / total) * 100
+            );
+
+    }
+
+
+    const progress =
+        document.getElementById(
+            "overallProgress"
+        );
+
+
+    const progressText =
+        document.getElementById(
+            "progressText"
+        );
+
+
+    if(progress){
+
+        progress.style.width =
+            percentage + "%";
+
+    }
+
+
+    if(progressText){
+
+        progressText.textContent =
+            percentage +
+            "% tasks completed";
+
+    }
+
+}
+
+
+/* =================================
+   SAFE TEXT
+================================= */
+
+function escapeHTML(text){
+
+    const div =
+        document.createElement("div");
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =================================
+   ENTER KEY TO ADD TASK
+================================= */
+
+const taskInput =
+    document.getElementById(
+        "taskInput"
+    );
+
+
+if(taskInput){
+
+    taskInput.addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter"){
+
+                addTask();
+
+            }
+        }
+    );
+}
+
+</script>
+<!-- =================================
+     PART 6 : FIRESTORE TESTS
+================================= -->
+
+<script type="module">
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    deleteDoc,
+    doc,
+    onSnapshot,
+    query,
+    orderBy,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    getAuth
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+const dbTests = getFirestore();
+
+const authTests = getAuth();
+
+let testUser = null;
+
+let testUnsubscribe = null;
+
+
+/* =================================
+   WATCH USER
+================================= */
+
+authTests.onAuthStateChanged(user => {
+
+    testUser = user;
+
+    if(user){
+
+        loadTests(user.uid);
+
+    }
+
+});
+
+
+/* =================================
+   ADD TEST
+================================= */
+
+window.addTest = async function(){
+
+    const nameInput =
+        document.getElementById("testName");
+
+    const scoreInput =
+        document.getElementById("testScore");
+
+
+    if(!nameInput || !scoreInput){
+
+        return;
+
+    }
+
+
+    const testName =
+        nameInput.value.trim();
+
+    const score =
+        Number(scoreInput.value);
+
+
+    if(testName === ""){
+
+        alert("Please enter the test name.");
+
+        return;
+
+    }
+
+
+    if(
+        scoreInput.value === "" ||
+        isNaN(score) ||
+        score < 0 ||
+        score > 100
+    ){
+
+        alert(
+            "Please enter a score between 0 and 100."
+        );
+
+        return;
+
+    }
+
+
+    if(!testUser){
+
+        alert("Please login first.");
+
+        return;
+
+    }
+
+
+    try{
+
+        await addDoc(
+
+            collection(
+                dbTests,
+                "users",
+                testUser.uid,
+                "tests"
+            ),
+
+            {
+
+                name: testName,
+
+                score: score,
+
+                createdAt: serverTimestamp()
+
+            }
+
+        );
+
+
+        nameInput.value = "";
+
+        scoreInput.value = "";
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to save test."
+        );
+
+    }
+
+};
+
+
+/* =================================
+   LOAD TESTS
+================================= */
+
+function loadTests(uid){
+
+    const testList =
+        document.getElementById("testList");
+
+
+    if(!testList){
+
+        return;
+
+    }
+
+
+    const testsRef =
+        collection(
+            dbTests,
+            "users",
+            uid,
+            "tests"
+        );
+
+
+    const testsQuery =
+        query(
+            testsRef,
+            orderBy("createdAt", "desc")
+        );
+
+
+    if(testUnsubscribe){
+
+        testUnsubscribe();
+
+    }
+
+
+    testUnsubscribe =
+        onSnapshot(
+
+            testsQuery,
+
+            snapshot => {
+
+                testList.innerHTML = "";
+
+
+                if(snapshot.empty){
+
+                    testList.innerHTML = `
+
+                        <div class="emptyState">
+
+                            📊
+
+                            <br><br>
+
+                            No tests added yet.
+
+                            <br>
+
+                            Add your first test score!
+
+                        </div>
+
+                    `;
+
+
+                    updateTestStats([]);
+
+                    return;
+
+                }
+
+
+                const tests = [];
+
+
+                snapshot.forEach(testDoc => {
+
+                    const test =
+                        testDoc.data();
+
+
+                    tests.push({
+
+                        id: testDoc.id,
+
+                        ...test
+
+                    });
+
+                });
+
+
+                tests.forEach(test => {
+
+                    createTestElement(test);
+
+                });
+
+
+                updateTestStats(tests);
+
+            },
+
+
+            error => {
+
+                console.error(
+                    "Test loading error:",
+                    error
+                );
+
+            }
+
+        );
+
+}
+
+
+/* =================================
+   CREATE TEST ELEMENT
+================================= */
+
+function createTestElement(test){
+
+    const testList =
+        document.getElementById(
+            "testList"
+        );
+
+
+    const item =
+        document.createElement("div");
+
+
+    item.className =
+        "testItem";
+
+
+    item.innerHTML = `
+
+        <div>
+
+            <strong>
+                ${escapeTestText(test.name)}
+            </strong>
+
+        </div>
+
+        <div>
+
+            <span class="testScore">
+                ${test.score}%
+            </span>
+
+            <button
+                class="deleteButton"
+                onclick="deleteTest('${test.id}')"
+                style="margin-left:10px;"
+            >
+                🗑️
+            </button>
+
+        </div>
+
+    `;
+
+
+    testList.appendChild(item);
+
+}
+
+
+/* =================================
+   DELETE TEST
+================================= */
+
+window.deleteTest = async function(testId){
+
+    if(!testUser){
+
+        return;
+
+    }
+
+
+    const confirmDelete =
+        confirm(
+            "Delete this test?"
+        );
+
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+
+    try{
+
+        await deleteDoc(
+
+            doc(
+                dbTests,
+                "users",
+                testUser.uid,
+                "tests",
+                testId
+            )
+
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to delete test."
+        );
+
+    }
+
+};
+
+
+/* =================================
+   TEST STATISTICS
+================================= */
+
+function updateTestStats(tests){
+
+    if(tests.length === 0){
+
+        setAverageScore(0);
+
+        return;
+
+    }
+
+
+    let totalScore = 0;
+
+
+    tests.forEach(test => {
+
+        totalScore +=
+            Number(test.score) || 0;
+
+    });
+
+
+    const average =
+        Math.round(
+            totalScore / tests.length
+        );
+
+
+    setAverageScore(average);
+
+}
+
+
+/* =================================
+   SET AVERAGE SCORE
+================================= */
+
+function setAverageScore(score){
+
+    const averageElement =
+        document.getElementById(
+            "averageScore"
+        );
+
+
+    if(averageElement){
+
+        averageElement.textContent =
+            score + "%";
+
+    }
+
+
+    const analysisScore =
+        document.getElementById(
+            "analysisScore"
+        );
+
+
+    if(analysisScore){
+
+        analysisScore.textContent =
+            score + "%";
+
+    }
+
+}
+
+
+/* =================================
+   SAFE TEST TEXT
+================================= */
+
+function escapeTestText(text){
+
+    const div =
+        document.createElement("div");
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =================================
+   ENTER KEY
+================================= */
+
+const testScoreInput =
+    document.getElementById(
+        "testScore"
+    );
+
+
+if(testScoreInput){
+
+    testScoreInput.addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter"){
+
+                addTest();
+
+            }
+
+        }
+    );
+
+}
+
+
+</script>
+
+<!-- =================================
+     PART 7 : STUDY TIMER
+================================= -->
+
+<script type="module">
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    onSnapshot,
+    query,
+    orderBy,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    getAuth
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+const dbStudy = getFirestore();
+
+const authStudy = getAuth();
+
+let studyUser = null;
+
+let timerSeconds = 0;
+
+let timerInterval = null;
+
+let timerRunning = false;
+
+
+/* =================================
+   WATCH USER
+================================= */
+
+authStudy.onAuthStateChanged(user => {
+
+    studyUser = user;
+
+    if(user){
+
+        loadStudyTime(user.uid);
+
+    }
+
+});
+
+
+/* =================================
+   TIMER DISPLAY
+================================= */
+
+function updateTimerDisplay(){
+
+    const display =
+        document.getElementById(
+            "timerDisplay"
+        );
+
+
+    if(!display){
+
+        return;
+
+    }
+
+
+    const hours =
+        Math.floor(
+            timerSeconds / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (timerSeconds % 3600) / 60
+        );
+
+
+    const seconds =
+        timerSeconds % 60;
+
+
+    display.textContent =
+
+        String(hours).padStart(2,"0")
+        + ":" +
+
+        String(minutes).padStart(2,"0")
+        + ":" +
+
+        String(seconds).padStart(2,"0");
+
+}
+
+
+/* =================================
+   START TIMER
+================================= */
+
+window.startTimer = function(){
+
+    if(timerRunning){
+
+        return;
+
+    }
+
+
+    if(!studyUser){
+
+        alert("Please login first.");
+
+        return;
+
+    }
+
+
+    timerRunning = true;
+
+
+    timerInterval =
+        setInterval(() => {
+
+            timerSeconds++;
+
+            updateTimerDisplay();
+
+        },1000);
+
+};
+
+
+/* =================================
+   PAUSE TIMER
+================================= */
+
+window.pauseTimer = function(){
+
+    if(!timerRunning){
+
+        return;
+
+    }
+
+
+    clearInterval(timerInterval);
+
+    timerRunning = false;
+
+};
+
+
+/* =================================
+   STOP TIMER
+================================= */
+
+window.stopTimer = async function(){
+
+    clearInterval(timerInterval);
+
+    timerRunning = false;
+
+
+    if(timerSeconds <= 0){
+
+        updateTimerDisplay();
+
+        return;
+
+    }
+
+
+    const studiedSeconds =
+        timerSeconds;
+
+
+    timerSeconds = 0;
+
+    updateTimerDisplay();
+
+
+    if(!studyUser){
+
+        return;
+
+    }
+
+
+    try{
+
+        await addDoc(
+
+            collection(
+                dbStudy,
+                "users",
+                studyUser.uid,
+                "studySessions"
+            ),
+
+            {
+
+                seconds: studiedSeconds,
+
+                minutes:
+                    Math.round(
+                        studiedSeconds / 60
+                    ),
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+
+        );
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Study time could not be saved."
+        );
+
+    }
+
+};
+
+
+/* =================================
+   LOAD STUDY TIME
+================================= */
+
+function loadStudyTime(uid){
+
+    const studyRef =
+        collection(
+            dbStudy,
+            "users",
+            uid,
+            "studySessions"
+        );
+
+
+    const studyQuery =
+        query(
+            studyRef,
+            orderBy("createdAt","desc")
+        );
+
+
+    onSnapshot(
+
+        studyQuery,
+
+        snapshot => {
+
+            let totalSeconds = 0;
+
+            let todaySeconds = 0;
+
+
+            const today =
+                new Date();
+
+            const todayDate =
+                today.toDateString();
+
+
+            snapshot.forEach(sessionDoc => {
+
+                const data =
+                    sessionDoc.data();
+
+
+                const seconds =
+                    Number(
+                        data.seconds
+                    ) || 0;
+
+
+                totalSeconds +=
+                    seconds;
+
+
+                if(data.createdAt){
+
+                    const sessionDate =
+                        data.createdAt
+                            .toDate()
+                            .toDateString();
+
+
+                    if(
+                        sessionDate ===
+                        todayDate
+                    ){
+
+                        todaySeconds +=
+                            seconds;
+
+                    }
+
+                }
+
+            });
+
+
+            updateStudyCards(
+                todaySeconds,
+                totalSeconds
+            );
+
+        },
+
+        error => {
+
+            console.error(
+                "Study loading error:",
+                error
+            );
+
+        }
+
+    );
+
+}
+
+
+/* =================================
+   UPDATE STUDY CARDS
+================================= */
+
+function updateStudyCards(
+    todaySeconds,
+    totalSeconds
+){
+
+    const todayMinutes =
+        Math.floor(
+            todaySeconds / 60
+        );
+
+
+    const totalMinutes =
+        Math.floor(
+            totalSeconds / 60
+        );
+
+
+    const todayHours =
+        (todayMinutes / 60)
+            .toFixed(1);
+
+
+    const totalHours =
+        (totalMinutes / 60)
+            .toFixed(1);
+
+
+    const todayElement =
+        document.getElementById(
+            "todayStudy"
+        );
+
+
+    const totalElement =
+        document.getElementById(
+            "totalStudy"
+        );
+
+
+    const dashboardStudy =
+        document.getElementById(
+            "studyHours"
+        );
+
+
+    const analysisStudy =
+        document.getElementById(
+            "analysisStudy"
+        );
+
+
+    if(todayElement){
+
+        todayElement.textContent =
+            todayHours + " hrs";
+
+    }
+
+
+    if(totalElement){
+
+        totalElement.textContent =
+            totalHours + " hrs";
+
+    }
+
+
+    if(dashboardStudy){
+
+        dashboardStudy.textContent =
+            totalHours + " hrs";
+
+    }
+
+
+    if(analysisStudy){
+
+        analysisStudy.textContent =
+            totalHours + " hrs";
+
+    }
+
+}
+
+
+/* =================================
+   INITIAL DISPLAY
+================================= */
+
+updateTimerDisplay();
+
+
+</script>
+
+
+<!-- =================================
+     PART 8 : DASHBOARD & ANALYSIS
+================================= -->
+
+<script type="module">
+
+import {
+    getFirestore,
+    collection,
+    onSnapshot
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    getAuth
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+const dbAnalysis = getFirestore();
+
+const authAnalysis = getAuth();
+
+let analysisUser = null;
+
+
+/* =================================
+   USER LOGIN CHECK
+================================= */
+
+authAnalysis.onAuthStateChanged(user => {
+
+    analysisUser = user;
+
+    if(user){
+
+        startAnalysis(user.uid);
+
+    }
+
+});
+
+
+/* =================================
+   START ANALYSIS
+================================= */
+
+function startAnalysis(uid){
+
+    watchTasks(uid);
+
+    watchTests(uid);
+
+}
+
+
+/* =================================
+   TASK ANALYSIS
+================================= */
+
+function watchTasks(uid){
+
+    const taskRef =
+        collection(
+            dbAnalysis,
+            "users",
+            uid,
+            "tasks"
+        );
+
+
+    onSnapshot(
+        taskRef,
+        snapshot => {
+
+            let total = 0;
+
+            let completed = 0;
+
+
+            snapshot.forEach(taskDoc => {
+
+                const task =
+                    taskDoc.data();
+
+
+                total++;
+
+
+                if(task.completed){
+
+                    completed++;
+
+                }
+
+            });
+
+
+            updateTaskAnalysis(
+                total,
+                completed
+            );
+
+        },
+
+        error => {
+
+            console.error(
+                "Task analysis error:",
+                error
+            );
+
+        }
+    );
+
+}
+
+
+/* =================================
+   UPDATE TASK ANALYSIS
+================================= */
+
+function updateTaskAnalysis(
+    total,
+    completed
+){
+
+    let percentage = 0;
+
+
+    if(total > 0){
+
+        percentage =
+            Math.round(
+                completed / total * 100
+            );
+
+    }
+
+
+    const analysisTasks =
+        document.getElementById(
+            "analysisTasks"
+        );
+
+
+    const taskBar =
+        document.getElementById(
+            "taskAnalysisBar"
+        );
+
+
+    const taskText =
+        document.getElementById(
+            "taskAnalysis"
+        );
+
+
+    if(analysisTasks){
+
+        analysisTasks.textContent =
+            completed + " / " + total;
+
+    }
+
+
+    if(taskBar){
+
+        taskBar.style.width =
+            percentage + "%";
+
+    }
+
+
+    if(taskText){
+
+        taskText.textContent =
+            percentage +
+            "% tasks completed";
+
+    }
+
+
+    updateAnalysisMessage();
+
+}
+
+
+/* =================================
+   TEST ANALYSIS
+================================= */
+
+function watchTests(uid){
+
+    const testRef =
+        collection(
+            dbAnalysis,
+            "users",
+            uid,
+            "tests"
+        );
+
+
+    onSnapshot(
+        testRef,
+        snapshot => {
+
+            let total = 0;
+
+            let scoreTotal = 0;
+
+
+            snapshot.forEach(testDoc => {
+
+                const test =
+                    testDoc.data();
+
+
+                total++;
+
+                scoreTotal +=
+                    Number(test.score) || 0;
+
+            });
+
+
+            let average = 0;
+
+
+            if(total > 0){
+
+                average =
+                    Math.round(
+                        scoreTotal / total
+                    );
+
+            }
+
+
+            updateTestAnalysis(
+                total,
+                average
+            );
+
+        },
+
+        error => {
+
+            console.error(
+                "Test analysis error:",
+                error
+            );
+
+        }
+    );
+
+}
+
+
+/* =================================
+   UPDATE TEST ANALYSIS
+================================= */
+
+function updateTestAnalysis(
+    total,
+    average
+){
+
+    const testBar =
+        document.getElementById(
+            "testAnalysisBar"
+        );
+
+
+    const testText =
+        document.getElementById(
+            "testAnalysis"
+        );
+
+
+    if(testBar){
+
+        testBar.style.width =
+            average + "%";
+
+    }
+
+
+    if(testText){
+
+        if(total === 0){
+
+            testText.textContent =
+                "No tests attempted yet.";
+
+        }
+        else{
+
+            testText.textContent =
+                "Average score: " +
+                average + "%";
+
+        }
+
+    }
+
+
+    const score =
+        document.getElementById(
+            "averageScore"
+        );
+
+
+    if(score){
+
+        score.textContent =
+            average + "%";
+
+    }
+
+
+    const analysisScore =
+        document.getElementById(
+            "analysisScore"
+        );
+
+
+    if(analysisScore){
+
+        analysisScore.textContent =
+            average + "%";
+
+    }
+
+
+    updateAnalysisMessage();
+
+}
+
+
+/* =================================
+   ANALYSIS MESSAGE
+================================= */
+
+function updateAnalysisMessage(){
+
+    const scoreElement =
+        document.getElementById(
+            "analysisScore"
+        );
+
+
+    const taskElement =
+        document.getElementById(
+            "analysisTasks"
+        );
+
+
+    const message =
+        document.getElementById(
+            "analysisMessage"
+        );
+
+
+    if(
+        !scoreElement ||
+        !taskElement ||
+        !message
+    ){
+
+        return;
+
+    }
+
+
+    const score =
+        parseInt(
+            scoreElement.textContent
+        ) || 0;
+
+
+    const taskText =
+        taskElement.textContent;
+
+
+    const parts =
+        taskText.split("/");
+
+
+    const completed =
+        Number(parts[0]) || 0;
+
+
+    const total =
+        Number(parts[1]) || 0;
+
+
+    let taskPercentage = 0;
+
+
+    if(total > 0){
+
+        taskPercentage =
+            completed / total * 100;
+
+    }
+
+
+    let result = "";
+
+
+    if(score >= 80){
+
+        result +=
+            "Excellent test performance! ";
+
+    }
+
+    else if(score >= 60){
+
+        result +=
+            "Your test performance is good. ";
+
+    }
+
+    else if(score > 0){
+
+        result +=
+            "Keep practising to improve your test scores. ";
+
+    }
+
+    else{
+
+        result +=
+            "Start taking tests to measure your performance. ";
+
+    }
+
+
+    if(taskPercentage >= 80){
+
+        result +=
+            "Your task completion is excellent. Keep the consistency going!";
+
+    }
+
+    else if(taskPercentage >= 50){
+
+        result +=
+            "You are making progress with your tasks. Try to complete a few more.";
+
+    }
+
+    else if(total > 0){
+
+        result +=
+            "Focus on completing your pending tasks.";
+
+    }
+
+    else{
+
+        result +=
+            "Add some study tasks to begin tracking your progress.";
+
+    }
+
+
+    message.textContent =
+        result;
+
+}
+
+
+/* =================================
+   REFRESH DASHBOARD
+================================= */
+
+window.refreshDashboard = function(){
+
+    if(!analysisUser){
+
+        return;
+
+    }
+
+
+    startAnalysis(
+        analysisUser.uid
+    );
+
+};
+
+
+</script>
+
+
+<!-- =================================
+     PART 9 : NAVIGATION & PROFILE
+================================= -->
+
+<script>
+
+/* =================================
+   OPEN SECTION
+================================= */
+
+window.openSection = function(sectionId, element){
+
+    const sections =
+        document.querySelectorAll(
+            ".pageSection"
+        );
+
+
+    sections.forEach(section => {
+
+        section.classList.remove("active");
+
+    });
+
+
+    const selected =
+        document.getElementById(
+            sectionId
+        );
+
+
+    if(selected){
+
+        selected.classList.add("active");
+
+    }
+
+
+    /* Sidebar active item */
+
+    const navItems =
+        document.querySelectorAll(
+            ".navItem"
+        );
+
+
+    navItems.forEach(item => {
+
+        item.classList.remove("active");
+
+    });
+
+
+    if(element){
+
+        element.classList.add("active");
+
+    }
+
+
+    /* Close mobile sidebar */
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+
+    if(sidebar){
+
+        sidebar.classList.remove(
+            "mobileOpen"
+        );
+
+    }
+
+
+    /* Scroll to top */
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+};
+
+
+/* =================================
+   OPEN SECTION BY ID
+================================= */
+
+window.openSectionById = function(sectionId){
+
+    const sections =
+        document.querySelectorAll(
+            ".pageSection"
+        );
+
+
+    sections.forEach(section => {
+
+        section.classList.remove("active");
+
+    });
+
+
+    const selected =
+        document.getElementById(
+            sectionId
+        );
+
+
+    if(selected){
+
+        selected.classList.add("active");
+
+    }
+
+
+    /* Sidebar active item */
+
+    const navItems =
+        document.querySelectorAll(
+            ".navItem"
+        );
+
+
+    navItems.forEach(item => {
+
+        item.classList.remove("active");
+
+        const onclickText =
+            item.getAttribute("onclick") || "";
+
+
+        if(
+            onclickText.includes(
+                "'" + sectionId + "'"
+            )
+        ){
+
+            item.classList.add("active");
+
+        }
+
+    });
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+};
+
+
+/* =================================
+   MOBILE MENU
+================================= */
+
+window.toggleMobileMenu = function(){
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+
+    if(!sidebar){
+
+        return;
+
+    }
+
+
+    sidebar.classList.toggle(
+        "mobileOpen"
+    );
+
+};
+
+
+/* =================================
+   CLOSE MOBILE MENU
+================================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const sidebar =
+            document.getElementById(
+                "sidebar"
+            );
+
+
+        const mobileMenu =
+            document.getElementById(
+                "mobileMenu"
+            );
+
+
+        if(
+            window.innerWidth <= 900 &&
+            sidebar &&
+            mobileMenu &&
+            !sidebar.contains(event.target) &&
+            !mobileMenu.contains(event.target)
+        ){
+
+            sidebar.classList.remove(
+                "mobileOpen"
+            );
+
+        }
+
+    }
+);
+
+
+/* =================================
+   GOAL CARD ANIMATION
+================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const goalCards =
+            document.querySelectorAll(
+                ".goalCard"
+            );
+
+
+        goalCards.forEach(
+            (card, index) => {
+
+                card.style.opacity = "0";
+
+                card.style.transform =
+                    "translateY(10px)";
+
+
+                setTimeout(() => {
+
+                    card.style.transition =
+                        "0.4s ease";
+
+                    card.style.opacity = "1";
+
+                    card.style.transform =
+                        "translateY(0)";
+
+                }, index * 100);
+
+            }
+        );
+
+    }
+);
+
+
+/* =================================
+   ACHIEVEMENT CHECKER
+================================= */
+
+window.checkAchievements = function(){
+
+    const achievements =
+        document.querySelectorAll(
+            ".achievementCard"
+        );
+
+
+    achievements.forEach(card => {
+
+        card.style.transition =
+            "0.3s";
+
+
+    });
+
+};
+
+
+/* =================================
+   PROFILE INFORMATION
+================================= */
+
+function loadProfile(){
+
+    const user =
+        window.firebaseCurrentUser;
+
+
+    if(!user){
+
+        return;
+
+    }
+
+
+    const name =
+        user.displayName ||
+        user.email.split("@")[0];
+
+
+    const profileName =
+        document.getElementById(
+            "profileName"
+        );
+
+
+    const profileEmail =
+        document.getElementById(
+            "profileEmail"
+        );
+
+
+    if(profileName){
+
+        profileName.textContent =
+            name;
+
+    }
+
+
+    if(profileEmail){
+
+        profileEmail.textContent =
+            user.email;
+
+    }
+
+}
+
+
+/* =================================
+   KEYBOARD NAVIGATION
+================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        /* Escape closes mobile menu */
+
+        if(event.key === "Escape"){
+
+            const sidebar =
+                document.getElementById(
+                    "sidebar"
+                );
+
+
+            if(sidebar){
+
+                sidebar.classList.remove(
+                    "mobileOpen"
+                );
+
+            }
+
+        }
+
+    }
+);
+
+</script>
+
+
+<!-- =================================
+     PART 10 : PROFILE & FINAL SETUP
+================================= -->
+
+<script type="module">
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+const finalAuth = getAuth();
+
+
+/* =================================
+   CURRENT USER
+================================= */
+
+onAuthStateChanged(
+    finalAuth,
+    user => {
+
+        if(!user){
+
+            return;
+
+        }
+
+
+        window.firebaseCurrentUser =
+            user;
+
+
+        updateProfileSection(user);
+
+        updateUserCircle(user);
+
+    }
+);
+
+
+/* =================================
+   UPDATE PROFILE
+================================= */
+
+function updateProfileSection(user){
+
+    const name =
+        user.displayName ||
+        user.email.split("@")[0];
+
+
+    const profileName =
+        document.getElementById(
+            "profileName"
+        );
+
+
+    const profileEmail =
+        document.getElementById(
+            "profileEmail"
+        );
+
+
+    const profileInitial =
+        document.getElementById(
+            "profileInitial"
+        );
+
+
+    if(profileName){
+
+        profileName.textContent =
+            name;
+
+    }
+
+
+    if(profileEmail){
+
+        profileEmail.textContent =
+            user.email;
+
+    }
+
+
+    if(profileInitial){
+
+        profileInitial.textContent =
+            name
+                .charAt(0)
+                .toUpperCase();
+
+    }
+
+}
+
+
+/* =================================
+   USER CIRCLE
+================================= */
+
+function updateUserCircle(user){
+
+    const name =
+        user.displayName ||
+        user.email.split("@")[0];
+
+
+    const circle =
+        document.getElementById(
+            "userCircle"
+        );
+
+
+    if(circle){
+
+        circle.textContent =
+            name
+                .charAt(0)
+                .toUpperCase();
+
+    }
+
+}
+
+
+/* =================================
+   ADD PROFILE SECTION
+================================= */
+
+function createProfileSection(){
+
+    if(
+        document.getElementById(
+            "profile"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const appPage =
+        document.getElementById(
+            "appPage"
+        );
+
+
+    if(!appPage){
+
+        return;
+
+    }
+
+
+    const main =
+        appPage.querySelector(
+            ".mainContent"
+        );
+
+
+    if(!main){
+
+        return;
+
+    }
+
+
+    const section =
+        document.createElement(
+            "section"
+        );
+
+
+    section.id =
+        "profile";
+
+
+    section.className =
+        "pageSection";
+
+
+    section.innerHTML = `
+
+        <div class="contentCard">
+
+            <div class="cardHeader">
+
+                <h2>My Profile 👤</h2>
+
+            </div>
+
+            <p class="cardDescription">
+
+                Your StudyPulse account information
+
+            </p>
+
+            <div style="
+                text-align:center;
+                padding:25px;
+            ">
+
+                <div
+                    id="profileInitial"
+                    style="
+                        width:90px;
+                        height:90px;
+                        margin:0 auto 15px;
+                        border-radius:50%;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        background:linear-gradient(
+                            135deg,
+                            #667eea,
+                            #764ba2
+                        );
+                        color:white;
+                        font-size:36px;
+                        font-weight:700;
+                    "
+                >
+                    U
+                </div>
+
+                <h2
+                    id="profileName"
+                    style="margin:10px 0;"
+                >
+                    Student
+                </h2>
+
+                <p
+                    id="profileEmail"
+                    style="
+                        color:#777;
+                        margin-bottom:25px;
+                    "
+                >
+                    Loading...
+                </p>
+
+                <div style="
+                    background:#f7f8ff;
+                    padding:18px;
+                    border-radius:15px;
+                    text-align:left;
+                ">
+
+                    <p>
+                        🎓
+                        <strong>Platform:</strong>
+                        StudyPulse
+                    </p>
+
+                    <p>
+                        📚
+                        <strong>Purpose:</strong>
+                        Study & Student Progress Tracking
+                    </p>
+
+                    <p>
+                        🔐
+                        <strong>Account:</strong>
+                        Firebase Authentication
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    main.appendChild(section);
+
+
+    /* Add Profile navigation */
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+
+    if(sidebar){
+
+        const logoutButton =
+            sidebar.querySelector(
+                ".logoutButton"
+            );
+
+
+        const profileNav =
+            document.createElement(
+                "button"
+            );
+
+
+        profileNav.className =
+            "navItem";
+
+
+        profileNav.innerHTML =
+            "👤 Profile";
+
+
+        profileNav.onclick =
+            function(){
+
+                openSection(
+                    "profile",
+                    profileNav
+                );
+
+            };
+
+
+        if(logoutButton){
+
+            sidebar.insertBefore(
+                profileNav,
+                logoutButton
+            );
+
+        }
+        else{
+
+            sidebar.appendChild(
+                profileNav
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =================================
+   ACHIEVEMENT STYLING
+================================= */
+
+function prepareAchievements(){
+
+    const cards =
+        document.querySelectorAll(
+            ".achievementCard"
+        );
+
+
+    cards.forEach(card => {
+
+        card.style.position =
+            "relative";
+
+
+        card.style.overflow =
+            "hidden";
+
+    });
+
+}
+
+
+/* =================================
+   PAGE STARTUP
+================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        createProfileSection();
+
+        prepareAchievements();
+
+        updateTimerDisplayIfAvailable();
+
+    }
+);
+
+
+/* =================================
+   TIMER SAFE STARTUP
+================================= */
+
+function updateTimerDisplayIfAvailable(){
+
+    const display =
+        document.getElementById(
+            "timerDisplay"
+        );
+
+
+    if(
+        display &&
+        display.textContent.trim() === ""
+    ){
+
+        display.textContent =
+            "00:00:00";
+
+    }
+
+}
+
+
+/* =================================
+   PREVENT FORM RELOAD
+================================= */
+
+document.addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+    }
+);
+
+
+/* =================================
+   ENTER KEY LOGIN
+================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key !== "Enter"){
+
+            return;
+
+        }
+
+
+        const active =
+            document.activeElement;
+
+
+        if(
+            active &&
+            active.id === "loginPassword"
+        ){
+
+            if(
+                typeof window.loginUser ===
+                "function"
+            ){
+
+                window.loginUser();
+
+            }
+
+        }
+
+
+        if(
+            active &&
+            active.id === "signupPassword"
+        ){
+
+            if(
+                typeof window.createAccount ===
+                "function"
+            ){
+
+                window.createAccount();
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =================================
+   FINAL CONSOLE MESSAGE
+================================= */
+
+console.log(
+    "StudyPulse loaded successfully 🚀"
+);
+
+</script>
+
+
+<!-- =================================
+     STUDYPULSE COMPLETE
+================================= -->
+
+</div>
+
+</body>
+
+</html>
